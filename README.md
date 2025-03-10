@@ -8,3 +8,4 @@ por meio do Github Pages.
 
 - [Tarefa 1](./html/reserva_de_armarios.html)
 - [Tarefa 2](./html/dashboard_inatel.html)
+- [Tarefa 3](./html/dashboard_inatel.html)

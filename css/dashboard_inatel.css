@@ -1,14 +1,103 @@
-/* dashboard_inatel.css */
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --primary-color: #0487d9;
+    --secondary-color: #0367a6;
+    --helper-color: #0ff2db;
+    --text-color: #333;
+    --background-color: #f2f2f2;
+    --border-color: #0ff2db;
+
+    --normal-border-color: #dbdbdb;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.arimo-normal {
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.arimo-bold {
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+html[data-theme="light"] {
+    --primary-color: #0487d9;
+    --secondary-color: #0367a6;
+    --helper-color: #0ff2db;
+    --text-color: #333;
+    --background-color: #f2f2f2;
+    --border-color: #0ff2db;
+}
+
+html[data-theme="dark"] {
+    --primary-color: #1e3a8a;
+    --secondary-color: #1e40af;
+    --helper-color: #3b82f6;
+    --text-color: #e5e7eb;
+    --background-color: #1f2937;
+    --border-color: #3b82f6;
+}
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+main {
+    padding: 15px;
+}
+
+.hidden-menu {
+    width: 50%;
+    height: 50%;
+
+    position: fixed;
+    top: 25%;
+    left: 25%;
+
+    background-color: var(--background-color);
+    border: 2px solid var(--normal-border-color);
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden-menu .menu-item {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 5px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+.hidden-menu.hidden {
+    visibility: hidden;
 }
 
 .header {
-    background-color: #f8f8f8;
+    background-color: var(--primary-color);
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -24,18 +113,30 @@ body {
 
 .icon, .logo {
     padding: 10px;
-    background-color: #ddd;
+    background-color: var(--primary-color);
     border-radius: 5px;
+
+    color: var(--background-color);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
 }
 
-main {
-    padding: 15px;
+.icon span {
+    font-size: 2em;
+}
+
+.logo svg {
+    height: 100%;
+    width: 150px; 
+
+    fill: var(--background-color);
 }
 
 .notifications-section {
-    background-color: #e8e4ff;
+    background-color: var(--background-color);
     padding: 15px;
-    border-radius: 10px;
     margin-bottom: 15px;
 }
 
@@ -45,21 +146,41 @@ main {
 
 .notifications-container ul {
     list-style: none;
-    padding: 0;
+    padding: 10px;
 }
 
 .notification-item {
-    background: white;
-    padding: 10px;
+    background: var(--background-color);
+    padding: 3px;
     margin-bottom: 5px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--normal-border-color);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+}
+
+.notification-item span {
+    color: var(--secondary-color);
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 0px 15px;
+    border-right: 2px solid var(--normal-border-color);
+}
+
+.notification-content {
+    width: 100%;
+    margin-left: 10px;
+    padding: auto;
 }
 
 .classes-section {
-    background-color: #d4f5d4;
+    background-color: var(--background-color);
+    border: 2px solid var(--normal-border-color);
+    border-radius: 8px;
+
     padding: 15px;
-    border-radius: 10px;
     margin-bottom: 15px;
 }
 
@@ -79,24 +200,51 @@ main {
 }
 
 .class-card {
-    background-color: #fff;
+    background-color: var(--background-color);
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .news-section {
-    background-color: #f5d4d4;
+    background-color: var(--background-color);
+    border: 2px solid var(--normal-border-color);
+    border-radius: 8px;
+
     padding: 15px;
-    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .main-news-container {
     text-align: left;
-    background: white;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    border: 2px solid var(--normal-border-color);
+    border-radius: 8px;
+    width: 50%;
+
+    margin: 0 auto;
+}
+
+.news-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.news-controls button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    cursor: pointer;
+
+    border: none;
+
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
