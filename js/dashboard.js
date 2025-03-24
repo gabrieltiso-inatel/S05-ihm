@@ -65,22 +65,21 @@ menuChangeThemeItem.addEventListener('click', toggleTheme);
 window.onload = () => {
     const html = document.documentElement;
     html.setAttribute('data-theme', currentTheme);
-
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('.carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    let currentIndex = 0;
-    
-    function createCarouselItems() {
-        carousel.innerHTML = '';
-        carouselData.forEach(event => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'carousel-item';
-            itemDiv.innerHTML = `
+// CAROUSEL CODE
+const carousel = document.querySelector('.carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentIndex = 0;
+
+function createCarouselItems() {
+    carousel.innerHTML = '';
+    carouselData.forEach(event => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('carousel-item');
+        itemDiv.innerHTML = `
                 <img src="${event.image}" alt="${event.title}">
                 <div class="info">
                     <h3 class="arimo-bold">${event.title}</h3>
@@ -91,36 +90,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     </p>
                 </div>
             `;
-            carousel.appendChild(itemDiv);
-        });
-    }
-    
-    createCarouselItems();
-    
-    function updateCarousel() {
-        const items = document.querySelectorAll('.carousel-item');
-        items.forEach((item, index) => {
-            if (index === currentIndex) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-    
+        carousel.appendChild(itemDiv);
+    });
+}
+
+function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    carousel.style.transition = 'transform 0.5s ease-in-out';
+}
+
+prevBtn.addEventListener('click', function () {
+    currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
     updateCarousel();
-    
-    prevBtn.addEventListener('click', function() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
-    });
-    
-    nextBtn.addEventListener('click', function() {
-        if (currentIndex < carouselData.length - 1) {
-            currentIndex++;
-            updateCarousel();
-        }
-    });
 });
+
+nextBtn.addEventListener('click', function () {
+    currentIndex = (currentIndex + 1) % carouselData.length;
+    updateCarousel();
+});
+
+let interval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % carouselData.length;
+    updateCarousel();
+}, 5000);
+
+carousel.addEventListener('mouseover', () => {
+    clearInterval(interval);
+    carousel.style.transition = 'transform 0s ease-in-out';
+});
+
+carousel.addEventListener('mouseleave', () => {
+    interval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % carouselData.length;
+        updateCarousel();
+    }, 5000);
+});
+
+createCarouselItems();
