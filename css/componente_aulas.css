@@ -1,46 +1,78 @@
-:root {
+@import url("dashboard_inatel.css");
+
+:host {
   --frequencia: #126ae2;
   --nota: #126ae2;
-  --prova: #126ae2;  
+  --prova: #126ae2;
+
+  --nota-baixa: #ff4d4d;
+  --nota-media: #ffa500;
+  --nota-alta: #4caf50;
+}
+
+.comp-aula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  border: 2px solid var(--normal-border-color);
+  border-radius: 8px;
+  background-color: var(--background-color);
 }
 
 .titulo_aula {
-    font-weight: bold;
-    font-size: 15px;
-    padding: 0 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .lables {
-    display: flex;
-  }
-  
-  .lable-prova,
-  .lable-frequencia,
-  .lable-nota {
-    background-color: var(--prova);
-    padding: 7px 15px;
-    margin-bottom: 10px;
-    border-radius: 500px;
-    text-align: center;
-    margin-right: 10px;
-  }
-  
-  .lable-frequencia {
-    background-color: var(--frequencia);
-  }
-  
-  .lable-nota {
-    background-color: var(--nota);
-  }
-  
-  .p_lable {
-    font-size: 13px;
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lables {
+  display: flex;
+}
+
+.lable-prova,
+.lable-frequencia,
+.lable-nota {
+  background-color: var(--prova);
+  padding: 7px 15px;
+  margin-bottom: 10px;
+  border-radius: 500px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.lable-frequencia {
+  background-color: var(--frequencia);
+}
+
+.lable-nota {
+  background-color: var(--nota);
+}
+
+.lable-nota[data-grade="low"] {
+  background-color: var(--nota-baixa);
+}
+
+.lable-nota[data-grade="medium"] {
+  background-color: var(--nota-media);
+}
+
+.lable-nota[data-grade="high"] {
+  background-color: var(--nota-alta);
+}
+
+.p_lable {
+  font-size: 13px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
