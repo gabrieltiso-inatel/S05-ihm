@@ -4,9 +4,7 @@ Neste repositório estão contidas todas as tarefas e submissões referentes à 
 O repositório será incrementado aos poucos, com os resultados das entregas podendo ser visualizados 
 por meio do Github Pages.
 
-#### Acessar as tarefas
+#### Acessar a página de dashboard
 
-- [Tarefa 1](./html/reserva_de_armarios.html)
-- [Tarefa 2](./html/dashboard_inatel.html)
-- [Tarefa 3](./html/dashboard_inatel.html)
-- [Tarefa 4](./html/dashboard_inatel.html)
+Para acessar a página de dashboard, clique no link abaixo:
+[Dashboard S05](./html/dashboard.html)
