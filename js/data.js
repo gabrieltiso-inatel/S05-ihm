@@ -1,7 +1,25 @@
 export let resumes = JSON.parse(localStorage.getItem('resumes')) || [
-    { id: 1, name: 'Resume 1', content: 'Content of Resume 1' },
-    { id: 2, name: 'Resume 2', content: 'Content of Resume 2' },
-    { id: 3, name: 'Resume 3', content: 'Content of Resume 3' }
+    { 
+        id: 1, 
+        name: 'Resume 1', 
+        content: 'Content of Resume 1',
+        description: 'Currículo focado em desenvolvimento frontend, destacando experiência com React, Vue e Angular.',
+        file: '../assets/resume1.pdf'
+    },
+    { 
+        id: 2, 
+        name: 'Resume 2', 
+        content: 'Content of Resume 2',
+        description: 'Currículo com ênfase em engenharia de software backend, incluindo projetos em Java e Python.',
+        file: '../assets/resume1.pdf'
+    },
+    { 
+        id: 3, 
+        name: 'Resume 3', 
+        content: 'Content of Resume 3',
+        description: 'Currículo voltado para análise de dados e BI, com experiência em SQL, Power BI e Tableau.',
+        file: '../assets/resume1.pdf'
+    }
 ]
 
 export let positions = [
