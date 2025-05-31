@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', 'Arimo', Arial, sans-serif;
+}
+
+.hidden-menu {
+    opacity: 0;
+    transform: translateY(-40px);
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    position: fixed;
+    top: 170px; /* adjust as needed */
+    left: 50%;
+    transform: translate(-50%, -40px);
+    z-index: 1000;
+}
+
+.hidden-menu:not(.hidden) {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+.menu-item {
+    transition: transform 0.15s cubic-bezier(0.4,0,0.2,1), box-shadow 0.15s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] button,
+[data-theme="dark"] .carousel-btn,
+[data-theme="dark"] .big-btn,
+[data-theme="dark"] .menu-item {
+    color: #fff !important;
+    background-color: var(--primary-color, #1e3a8a) !important;
+    border-color: var(--border-color, #3b82f6) !important;
+}
+
+[data-theme="dark"] button:hover,
+[data-theme="dark"] .carousel-btn:hover,
+[data-theme="dark"] .big-btn:hover,
+[data-theme="dark"] .menu-item:hover {
+    background-color: var(--secondary-color, #1e40af) !important;
+    color: #fff !important;
+}

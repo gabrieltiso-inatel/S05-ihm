@@ -12,9 +12,7 @@ function renderNavbar() {
                     </path>
                 </svg>
             </div>
-            <div class="icon" id="closeBtn">
-                <span class="material-symbols-outlined">cancel</span>
-            </div>
+            <div></div>
         </div>
     </header>
     `;
@@ -43,18 +41,27 @@ function renderMenu() {
             <span class="material-symbols-outlined">assignment</span>
             Applications
         </div>
+        <div class="menu-item arimo-bold" id="closeBtn" style="width:80%;display:flex;align-items:center;gap:8px;">
+            <span class="material-symbols-outlined">close</span>
+            Fechar Menu
+        </div>
     </div>
     `;
 }
 
 function setupMenuAndNavbar() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
     document.body.insertAdjacentHTML('afterbegin', renderNavbar() + renderMenu());
 
     document.getElementById('menuBtn').onclick = () => {
         document.getElementById('mainMenu').classList.toggle('hidden');
     };
     document.getElementById('closeBtn').onclick = () => {
-        window.location.href = 'dashboard.html';
+        document.getElementById('mainMenu').classList.add('hidden');
     };
     document.getElementById('dashboardMenuItem').onclick = () => {
         window.location.href = 'dashboard.html';

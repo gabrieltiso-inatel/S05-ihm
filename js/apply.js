@@ -41,16 +41,17 @@ function updateResumeOptions() {
 
 function displayPosition() {
     const params = new URLSearchParams(window.location.search);
-    const positionId = params.get('positionId');
-    if (positionId) {
-        const position = positions.find(p => p.id === parseInt(positionId));
-        if (position) {
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'notification-item card';
-            infoDiv.innerHTML = `<div class="notification-content card-content"><b>${position.title}</b> at ${position.company}</div>`;
-            document.querySelector('main').insertBefore(infoDiv, document.getElementById('apply-form').parentElement);
-        }
-    }
+    const positionId = parseInt(params.get('positionId'));
+
+    const position = positions.find(p => p.id === positionId);
+    const positionDetails = document.querySelector('.position-details');
+
+    positionDetails.innerHTML = `
+        <div class="position-title-row">
+            ${position.image ? `<img src="${position.image}" alt="${position.company} logo" class="position-icon">` : ''}
+            <h2 class="arimo-bold">${position.title}</h2>
+        </div>
+    `;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

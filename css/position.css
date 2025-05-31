@@ -1,0 +1,148 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-item.card {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    border-radius: 18px;
+    background: var(--background-color);
+    padding: 2.5rem 2rem 2rem 2rem;
+    animation: card-fade-in 0.7s cubic-bezier(.4,1.4,.6,1) both;
+    max-width: 500px;
+    width: 100%;
+    min-width: 320px;
+    margin: auto;
+    color: var(--text-color);
+}
+
+/* Fade and slide in animation */
+@keyframes card-fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Title row: logo + title text */
+.position-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.company-logo {
+    width: 2.2em;
+    height: 2.2em;
+    object-fit: contain;
+    border-radius: 8px;
+    background: var(--card-bg, #f5f5f5);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/* Title text */
+.position-title-row .arimo-bold {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
+    text-align: left;
+}
+
+/* Company name */
+#position-details h4.arimo-normal {
+    margin: 0 0 1.2em 0;
+    font-size: 1.1rem;
+    color: var(--secondary-text-color, #666);
+    font-weight: normal;
+    text-align: left;
+}
+
+/* Description and details aligned left */
+#position-details p.arimo-normal {
+    text-align: left;
+    font-size: 1.18rem;
+    margin: 1.5em 0 1em 0;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+#position-details p.arimo-normal:last-of-type {
+    color: var(--secondary-text-color, #444);
+    margin-bottom: 2em;
+    font-size: 1rem;
+    text-align: left;
+}
+
+/* Apply button aligned right */
+.position-btn {
+    display: inline-block;
+    margin-left: auto;
+    margin-top: 1.5em;
+    padding: 0.7em 2.2em;
+    background: var(--primary-color, #1976d2);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+    float: right;
+    margin: 0 10px;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+}
+
+.position-btn:hover, .position-btn:focus {
+    background: var(--secondary-color, #1256a0);
+}
+
+/* Ensure only the circular icon is displayed next to the title */
+.position-title-row .company-logo,
+.position-title-row .position-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f5f5f5;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-right: 10px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .notification-item.card {
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        min-width: unset;
+    }
+    .position-title-row .arimo-bold {
+        font-size: 1.3rem;
+    }
+    .company-logo {
+        width: 1.5em;
+        height: 1.5em;
+    }
+    .position-btn {
+        padding: 0.6em 1.2em;
+        font-size: 1rem;
+    }
+}
