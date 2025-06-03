@@ -84,7 +84,6 @@ main {
 }
 
 #position-details p.arimo-normal:last-of-type {
-    color: var(--secondary-text-color, #444);
     margin-bottom: 2em;
     font-size: 1rem;
     text-align: left;

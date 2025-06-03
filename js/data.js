@@ -1,3 +1,4 @@
+
 export let resumes = JSON.parse(localStorage.getItem('resumes')) || [
     { 
         id: 1, 
@@ -163,4 +164,12 @@ Você irá acompanhar operações diárias, analisar relatórios de desempenho, 
     }
 ];
 
-export let applications = JSON.parse(localStorage.getItem('applications')) || [];
+export let applications = JSON.parse(localStorage.getItem('applications')) || [
+    {
+        positionId: 1,
+        email: "fakeuser@email.com",
+        fullname: "João da Silva",
+        resumeId: 2,
+        date: "01/06/2024"
+    }
+];

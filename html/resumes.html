@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
     <script src="../js/menu.js" defer></script>
     <script src="../js/resumes.js" type="module" defer></script>
 </head>
@@ -19,6 +22,32 @@
         <h2 class="arimo-bold">Resumes</h2>
         <div id="resumes-list-container"></div>
     </main>
+    <!-- Upload Resume Button -->
+    <button id="open-upload-resume-btn" title="Upload Resume">
+        <span class="material-symbols-outlined">upload</span>
+    </button>
+    <!-- Modal for Upload -->
+    <div id="upload-resume-modal" class="upload-modal hidden">
+        <form id="upload-resume-form" class="upload-form" enctype="multipart/form-data">
+            <h3 class="arimo-bold">Upload Resume</h3>
+            <label>
+                Title:
+                <input type="text" id="resume-title" required>
+            </label>
+            <label>
+                Description:
+                <input type="text" id="resume-description" required>
+            </label>
+            <label>
+                PDF File:
+                <input type="file" id="resume-file" accept="application/pdf" required>
+            </label>
+            <div class="upload-actions">
+                <button type="submit" class="carousel-btn">Upload</button>
+                <button type="button" id="close-upload-resume-btn" class="carousel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

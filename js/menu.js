@@ -20,30 +20,36 @@ function renderNavbar() {
 
 function renderMenu() {
     return `
-    <div class="hidden-menu hidden" id="mainMenu" style="min-width:220px;">
-        <div class="menu-item arimo-bold" id="dashboardMenuItem" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">home</span>
-            Dashboard
-        </div>
-        <div class="menu-item arimo-bold" id="themeMenuItem" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">contrast</span>
-            Alterar Tema
-        </div>
-        <div class="menu-item arimo-bold" id="vagasMenuItem" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">work</span>
-            Vagas
-        </div>
-        <div class="menu-item arimo-bold" id="resumesMenuItem" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">description</span>
-            Resumès
-        </div>
-        <div class="menu-item arimo-bold" id="applicationsMenuItem" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">assignment</span>
-            Applications
-        </div>
-        <div class="menu-item arimo-bold" id="closeBtn" style="width:80%;display:flex;align-items:center;gap:8px;">
-            <span class="material-symbols-outlined">close</span>
-            Fechar Menu
+    <div class="custom-menu-overlay" id="mainMenuOverlay">
+        <div class="custom-menu" id="mainMenu">
+            <div class="menu-grid-btn arimo-bold" id="dashboardMenuItem">
+                <span class="material-symbols-outlined menu-icon">home</span>
+                Dashboard
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="themeMenuItem">
+                <span class="material-symbols-outlined menu-icon">contrast</span>
+                Alterar Tema
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="vagasMenuItem">
+                <span class="material-symbols-outlined menu-icon">work</span>
+                Vagas
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="resumesMenuItem">
+                <span class="material-symbols-outlined menu-icon">description</span>
+                Resumès
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="applicationsMenuItem">
+                <span class="material-symbols-outlined menu-icon">assignment</span>
+                Applications
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="tutorialMenuItem">
+                <span class="material-symbols-outlined menu-icon">help</span>
+                Tutorial
+            </div>
+            <div class="menu-grid-btn arimo-bold" id="closeBtn">
+                <span class="material-symbols-outlined menu-icon">close</span>
+                Fechar Menu
+            </div>
         </div>
     </div>
     `;
@@ -57,11 +63,22 @@ function setupMenuAndNavbar() {
 
     document.body.insertAdjacentHTML('afterbegin', renderNavbar() + renderMenu());
 
+    const overlay = document.getElementById('mainMenuOverlay');
+    const menu = document.getElementById('mainMenu');
+
     document.getElementById('menuBtn').onclick = () => {
-        document.getElementById('mainMenu').classList.toggle('hidden');
+        overlay.classList.add('show');
+        menu.classList.add('slide-down');
     };
     document.getElementById('closeBtn').onclick = () => {
-        document.getElementById('mainMenu').classList.add('hidden');
+        overlay.classList.remove('show');
+        menu.classList.remove('slide-down');
+    };
+    overlay.onclick = (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('show');
+            menu.classList.remove('slide-down');
+        }
     };
     document.getElementById('dashboardMenuItem').onclick = () => {
         window.location.href = 'dashboard.html';
@@ -81,7 +98,112 @@ function setupMenuAndNavbar() {
     document.getElementById('applicationsMenuItem').onclick = () => {
         window.location.href = 'applications.html';
     };
+    document.getElementById('tutorialMenuItem').onclick = () => {
+        localStorage.removeItem('showDashboardTour');
+        window.location.href = 'dashboard.html';
+    };
 }
 
 
+document.addEventListener('keyup', (e) => {
+    if (e.ctrlKey && e.key === 'm') {
+        const overlay = document.getElementById('mainMenuOverlay');
+        const menu = document.getElementById('mainMenu');
+
+        if (overlay.classList.contains('show')) {
+            overlay.classList.remove('show');
+            menu.classList.remove('slide-down');
+            return;
+        } 
+
+        overlay.classList.add('show');
+        menu.classList.add('slide-down');
+    }
+});
 document.addEventListener('DOMContentLoaded', () => setupMenuAndNavbar());
+
+const menuStyles = `
+.custom-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 22, 34, 0.82);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+.custom-menu-overlay.show {
+    display: flex;
+}
+.custom-menu {
+    background: var(--background-color, #222);
+    border-radius: 18px;
+    padding: 38px 32px 32px 32px;
+    min-width: 320px;
+    min-height: 340px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 32px;
+    animation: menu-slide-down 0.45s cubic-bezier(.4,1.4,.6,1) both;
+    transform: translateY(-60px);
+    opacity: 0;
+}
+.custom-menu.slide-down {
+    animation: menu-slide-down 0.45s cubic-bezier(.4,1.4,.6,1) both;
+}
+@keyframes menu-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.menu-grid-btn {
+    background: var(--primary-color, #1976d2);
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 10px 18px 10px;
+    font-size: 1.18rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+    transition: background 0.18s, transform 0.18s;
+    min-width: 110px;
+    min-height: 90px;
+    gap: 10px;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+.menu-grid-btn:hover, .menu-grid-btn:focus {
+    background: var(--secondary-color, #1256a0);
+    transform: translateY(2px) scale(1.04);
+}
+.menu-icon {
+    font-size: 2.5em !important;
+    margin-bottom: 6px;
+}
+@media (max-width: 600px) {
+    .custom-menu {
+        min-width: 90vw;
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+        padding: 18px 6px 18px 6px;
+    }
+}
+`;
+
+if (!document.getElementById('custom-menu-style')) {
+    const style = document.createElement('style');
+    style.id = 'custom-menu-style';
+    style.innerHTML = menuStyles;
+    document.head.appendChild(style);
+}

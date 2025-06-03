@@ -6,10 +6,10 @@ function handleApply(e) {
     const email = document.getElementById('email').value;
     const fullname = document.getElementById('fullname').value;
     const resumeId = parseInt(document.getElementById('resume').value);
-    const vagaId = parseInt(localStorage.getItem('selectedVagaId'));
+    const positionId = new URLSearchParams(window.location.search).get('positionId');
     const date = new Date().toLocaleDateString('pt-BR');
 
-    applications.push({ vagaId, email, fullname, resumeId, date });
+    applications.push({ positionId, email, fullname, resumeId, date });
     localStorage.setItem('applications', JSON.stringify(applications));
 
     window.location.href = 'applications.html';

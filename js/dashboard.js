@@ -99,4 +99,94 @@ carousel.addEventListener('mouseleave', () => {
     }, 5000);
 });
 
-createCarouselItems();
+function addDriverInteraction() {
+    const driver = window.driver.js.driver;
+    const driverObj = driver({
+        showProgress: true,
+        onPopoverRender: (popover) => {
+            if (popover.title.innerHTML === 'Finalizando o Tour') {
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.style.display = 'flex';
+                checkboxLabel.style.alignItems = 'center';
+                checkboxLabel.style.gap = '6px';
+
+                const dontShowAgainCheckbox = document.createElement('input');
+                dontShowAgainCheckbox.type = 'checkbox';
+                dontShowAgainCheckbox.style.marginRight = '4px';
+
+                const labelText = document.createTextNode('Não mostrar mais');
+
+                checkboxLabel.appendChild(dontShowAgainCheckbox);
+                checkboxLabel.appendChild(labelText);
+
+                popover.footerButtons.appendChild(checkboxLabel);
+
+                dontShowAgainCheckbox.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        localStorage.setItem('showDashboardTour', 'false');
+                    } else {
+                        localStorage.removeItem('showDashboardTour');
+                    }
+                });
+            }
+        },
+        steps: [
+            {
+                popover: {
+                    title: 'Bem-vindo!',
+                    description: `
+                    Olá! Vamos começar um tour rápido pela aplicação. 
+                        <ul style="padding-left: 18px; margin: 0;">
+                            <li><b>Use as setas do teclado</b> para navegar.</li>
+                            <li><b>Pressione ESC</b> para sair a qualquer momento.</li>
+                            <li>Para ver o tour novamente, <b>abra o menu</b> (<b>Ctrl + m</b>), ou acesse clicando no icone no canto superior esquerdo, e clique no tutoria, e clique no tutorial.</li>
+                            <li>Reativar o tutorial em outra página <b>traz você de volta aqui</b>.</li>
+                        </ul>`,
+                    side: 'bottom',
+                    align: 'center'
+                }
+            },
+            {
+                element: document.querySelector('.notifications-container'),
+                popover: {
+                    title: 'Notificações',
+                    description: 'Aqui você verá notificações importantes e novidades do sistema.'
+                }
+            },
+            {
+                element: document.querySelector('.classes-section'),
+                popover: {
+                    title: 'Aulas e Componentes',
+                    description: 'Nesta seção você pode acompanhar suas aulas, frequência e notas. Os detalhes são exibidos automaticamente conforme o dia.'
+                }
+            },
+            {
+                element: document.querySelector('.news-section'),
+                popover: {
+                    title: 'Eventos e Carrossel',
+                    description: 'Aqui ficam os eventos e notícias em destaque. Navegue pelo carrossel para ver mais!'
+                }
+            },
+            {
+                popover: {
+                    title: 'Finalizando o Tour',
+                    description: `
+                        Obrigado por participar do tour! Você pode acessar as seções de Currículos, Aplicações e Vagas no menu lateral.
+                        Se quiser não ver este tour novamente, marque a opção abaixo. Você pode reativá-lo a qualquer momento no menu.
+                    `,
+                    side: 'bottom',
+                    align: 'center'
+                }
+            }
+        ],
+    });
+
+    driverObj.drive();
+}
+
+document, addEventListener('DOMContentLoaded', () => {
+    createCarouselItems();
+    if (localStorage.getItem('showDashboardTour') !== 'false') {
+        addDriverInteraction();
+    }
+})
