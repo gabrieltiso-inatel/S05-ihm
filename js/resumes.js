@@ -2,7 +2,12 @@ function renderResumesList() {
     const container = document.getElementById('resumes-list-container');
     container.innerHTML = '';
 
-    const resumes = JSON.parse(localStorage.getItem('resumes') || '[]'); 
+    const resumes = JSON.parse(localStorage.getItem('resumes') || '[]');
+    if (resumes.length === 0) {
+        container.innerHTML = '<div class="resume-card"><div class="card-content">Nenhum currículo cadastrado.</div></div>';
+        return;
+    }
+
     resumes.forEach((resume, idx) => {
         console.log(resume);
         const div = document.createElement('div');
@@ -108,55 +113,62 @@ function setupUploadResumeMenu() {
 }
 
 function addDriverInteraction() {
+    const resumes = JSON.parse(localStorage.getItem('resumes') || '[]');
     const driver = window.driver.js.driver;
+    let steps = [
+        {
+            popover: {
+                title: 'Meus Currículos',
+                description: 'Aqui você pode visualizar, baixar ou remover seus currículos cadastrados.',
+                side: 'bottom',
+                align: 'center'
+            }
+        },
+        {
+            element: document.querySelector('.resume-card'),
+            popover: {
+                title: 'Currículo',
+                description: 'Este é um currículo cadastrado. Você pode ver o nome e descrição.',
+                side: 'top',
+                align: 'center'
+            }
+        },
+        {
+            element: document.querySelector('.resume-card .action-container .carousel-btn'),
+            popover: {
+                title: 'Remover Currículo',
+                description: 'Clique aqui para remover este currículo do sistema.',
+                side: 'top',
+                align: 'center'
+            }
+        },
+        {
+            element: document.querySelector('.resume-card .action-container a.carousel-btn'),
+            popover: {
+                title: 'Baixar Currículo',
+                description: 'Clique aqui para baixar o PDF deste currículo.',
+                side: 'top',
+                align: 'center'
+            }
+        },
+        {
+            element: document.getElementById('open-upload-resume-btn'),
+            popover: {
+                title: 'Adicionar Novo Currículo',
+                description: 'Clique neste botão para cadastrar um novo currículo em PDF.',
+                side: 'left',
+                align: 'center'
+            }
+        }
+    ];
+
+    if (resumes.length === 0) {
+        steps = [steps[0], steps[steps.length - 1]];
+    }
+
     const driverObj = driver({
         showProgress: true,
-        steps: [
-            {
-                popover: {
-                    title: 'Meus Currículos',
-                    description: 'Aqui você pode visualizar, baixar ou remover seus currículos cadastrados.',
-                    side: 'bottom',
-                    align: 'center'
-                }
-            },
-            {
-                element: document.querySelector('.resume-card'),
-                popover: {
-                    title: 'Currículo',
-                    description: 'Este é um currículo cadastrado. Você pode ver o nome e descrição.',
-                    side: 'top',
-                    align: 'center'
-                }
-            },
-            {
-                element: document.querySelector('.resume-card .action-container .carousel-btn'),
-                popover: {
-                    title: 'Remover Currículo',
-                    description: 'Clique aqui para remover este currículo do sistema.',
-                    side: 'top',
-                    align: 'center'
-                }
-            },
-            {
-                element: document.querySelector('.resume-card .action-container a.carousel-btn'),
-                popover: {
-                    title: 'Baixar Currículo',
-                    description: 'Clique aqui para baixar o PDF deste currículo.',
-                    side: 'top',
-                    align: 'center'
-                }
-            },
-            {
-                element: document.getElementById('open-upload-resume-btn'),
-                popover: {
-                    title: 'Adicionar Novo Currículo',
-                    description: 'Clique neste botão para cadastrar um novo currículo em PDF.',
-                    side: 'left',
-                    align: 'center'
-                }
-            }
-        ]
+        steps
     });
     driverObj.drive();
 }

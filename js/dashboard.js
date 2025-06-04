@@ -103,33 +103,7 @@ function addDriverInteraction() {
     const driver = window.driver.js.driver;
     const driverObj = driver({
         showProgress: true,
-        onPopoverRender: (popover) => {
-            if (popover.title.innerHTML === 'Finalizando o Tour') {
-                const checkboxLabel = document.createElement('label');
-                checkboxLabel.style.display = 'flex';
-                checkboxLabel.style.alignItems = 'center';
-                checkboxLabel.style.gap = '6px';
-
-                const dontShowAgainCheckbox = document.createElement('input');
-                dontShowAgainCheckbox.type = 'checkbox';
-                dontShowAgainCheckbox.style.marginRight = '4px';
-
-                const labelText = document.createTextNode('Não mostrar mais');
-
-                checkboxLabel.appendChild(dontShowAgainCheckbox);
-                checkboxLabel.appendChild(labelText);
-
-                popover.footerButtons.appendChild(checkboxLabel);
-
-                dontShowAgainCheckbox.addEventListener('change', (e) => {
-                    if (e.target.checked) {
-                        localStorage.setItem('showDashboardTour', 'false');
-                    } else {
-                        localStorage.removeItem('showDashboardTour');
-                    }
-                });
-            }
-        },
+        onPopoverRender: null, // Remove checkbox logic
         steps: [
             {
                 popover: {
@@ -139,8 +113,9 @@ function addDriverInteraction() {
                         <ul style="padding-left: 18px; margin: 0;">
                             <li><b>Use as setas do teclado</b> para navegar.</li>
                             <li><b>Pressione ESC</b> para sair a qualquer momento.</li>
-                            <li>Para ver o tour novamente, <b>abra o menu</b> (<b>Ctrl + m</b>), ou acesse clicando no icone no canto superior esquerdo, e clique no tutoria, e clique no tutorial.</li>
-                            <li>Reativar o tutorial em outra página <b>traz você de volta aqui</b>.</li>
+                            <li>Para ver o tour novamente, <b>abra o menu</b> (<b>Ctrl + m</b>), ou acesse clicando no ícone do canto superior esquerdo, e clique no tutorial.</li>
+                            <li>Para ativar ou desativar o tutorial, use o botão <b>Ativar/Desativar tutorial</b> no final do menu.</li>
+                            <li>Reativar o tutorial em outra página <b>leva você de volta aqui</b>.</li>
                         </ul>`,
                     side: 'bottom',
                     align: 'center'
@@ -171,8 +146,8 @@ function addDriverInteraction() {
                 popover: {
                     title: 'Finalizando o Tour',
                     description: `
-                        Obrigado por participar do tour! Você pode acessar as seções de Currículos, Aplicações e Vagas no menu lateral.
-                        Se quiser não ver este tour novamente, marque a opção abaixo. Você pode reativá-lo a qualquer momento no menu.
+                        Obrigado por participar do tour! Você pode acessar as seções de Currículos, Aplicações e Vagas no menu.
+                        Para ativar ou desativar o tutorial, use o botão no final do menu.
                     `,
                     side: 'bottom',
                     align: 'center'

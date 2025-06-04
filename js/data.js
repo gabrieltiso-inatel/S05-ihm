@@ -1,27 +1,5 @@
 
-export let resumes = JSON.parse(localStorage.getItem('resumes')) || [
-    { 
-        id: 1, 
-        name: 'Resume 1', 
-        content: 'Content of Resume 1',
-        description: 'Currículo focado em desenvolvimento frontend, destacando experiência com React, Vue e Angular.',
-        file: '../assets/resume1.pdf'
-    },
-    { 
-        id: 2, 
-        name: 'Resume 2', 
-        content: 'Content of Resume 2',
-        description: 'Currículo com ênfase em engenharia de software backend, incluindo projetos em Java e Python.',
-        file: '../assets/resume1.pdf'
-    },
-    { 
-        id: 3, 
-        name: 'Resume 3', 
-        content: 'Content of Resume 3',
-        description: 'Currículo voltado para análise de dados e BI, com experiência em SQL, Power BI e Tableau.',
-        file: '../assets/resume1.pdf'
-    }
-]
+export let resumes = JSON.parse(localStorage.getItem('resumes'));
 
 export let positions = [
     {
@@ -164,12 +142,4 @@ Você irá acompanhar operações diárias, analisar relatórios de desempenho, 
     }
 ];
 
-export let applications = JSON.parse(localStorage.getItem('applications')) || [
-    {
-        positionId: 1,
-        email: "fakeuser@email.com",
-        fullname: "João da Silva",
-        resumeId: 2,
-        date: "01/06/2024"
-    }
-];
+export let applications = JSON.parse(localStorage.getItem('applications')) || [];

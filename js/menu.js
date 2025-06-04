@@ -46,6 +46,10 @@ function renderMenu() {
                 <span class="material-symbols-outlined menu-icon">help</span>
                 Tutorial
             </div>
+            <div class="menu-grid-btn arimo-bold" id="toggleTourMenuItem">
+                <span class="material-symbols-outlined menu-icon">visibility_off</span>
+                <span id="toggleTourText"></span>
+            </div>
             <div class="menu-grid-btn arimo-bold" id="closeBtn">
                 <span class="material-symbols-outlined menu-icon">close</span>
                 Fechar Menu
@@ -102,6 +106,25 @@ function setupMenuAndNavbar() {
         localStorage.removeItem('showDashboardTour');
         window.location.href = 'dashboard.html';
     };
+
+    // Tutorial toggle logic
+    function updateTourToggleText() {
+        const showTour = localStorage.getItem('showDashboardTour') !== 'false';
+        document.getElementById('toggleTourText').textContent = showTour
+            ? 'Desativar tutorial'
+            : 'Ativar tutorial';
+    }
+
+    document.getElementById('toggleTourMenuItem').onclick = () => {
+        const showTour = localStorage.getItem('showDashboardTour') !== 'false';
+        if (showTour) {
+            localStorage.setItem('showDashboardTour', 'false');
+        } else {
+            localStorage.removeItem('showDashboardTour');
+        }
+        updateTourToggleText();
+    };
+    updateTourToggleText();
 }
 
 
@@ -193,10 +216,39 @@ const menuStyles = `
 }
 @media (max-width: 600px) {
     .custom-menu {
-        min-width: 90vw;
+        min-width: 98vw;
+        max-width: 100vw;
+        width: 100vw;
         grid-template-columns: 1fr;
-        gap: 18px 0;
-        padding: 18px 6px 18px 6px;
+        gap: 14px 0;
+        padding: 10vw 2vw 8vw 2vw;
+        border-radius: 0 0 18px 18px;
+        box-sizing: border-box;
+        left: 0;
+        right: 0;
+        top: 0;
+        position: fixed;
+        min-height: unset;
+    }
+    .custom-menu-overlay {
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 0;
+    }
+    .menu-grid-btn {
+        min-width: unset;
+        min-height: 70px;
+        font-size: 1.08rem;
+        padding: 18px 6px 12px 6px;
+    }
+}
+@media (max-width: 400px) {
+    .custom-menu {
+        padding: 4vw 1vw 4vw 1vw;
+    }
+    .menu-grid-btn {
+        font-size: 0.98rem;
+        padding: 12px 2px 8px 2px;
     }
 }
 `;
