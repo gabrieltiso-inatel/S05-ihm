@@ -126,10 +126,8 @@ main {
 
 .icon, .logo {
     padding: 5px;
-    background-color: var(--primary-color);
     border-radius: 5px;
 
-    color: var(--background-color);
     cursor: pointer;
 
     display: flex;
@@ -138,13 +136,14 @@ main {
 
 .icon span {
     font-size: 2em;
+    color: white !important;
 }
 
 .logo svg {
     height: 100%;
     width: 150px; 
 
-    fill: var(--background-color);
+    fill: white !important;
 }
 
 .notifications-section {
@@ -376,6 +375,83 @@ main {
 
 .custom-menu-item:hover {
     background-color: var(--secondary-color);
+}
+
+/* Prevent app styles from affecting driver.js popovers */
+.driver-popover,
+.driver-popover *,
+.driver-popover *:before,
+.driver-popover *:after {
+    all: unset;
+    box-sizing: border-box;
+    font-family: "Arimo", Arial, sans-serif !important;
+    color: inherit !important;
+    background: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    outline: none !important;
+}
+
+/* Restore driver.js popover base styles for both themes */
+.driver-popover {
+    background: #fff !important;
+    color: #222 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
+    border: 1.5px solid #dbdbdb !important;
+    max-width: 340px;
+    font-size: 1.08em;
+    z-index: 99999 !important;
+}
+html[data-theme="dark"] .driver-popover {
+    background: #232837 !important;
+    color: #f3f3f3 !important;
+    border-color: #333a4d !important;
+}
+
+.driver-popover-title {
+    font-size: 1.25em !important;
+    font-weight: bold !important;
+    margin-bottom: 0.5em !important;
+    color: inherit !important;
+}
+
+.driver-popover-description {
+    font-size: 1em !important;
+    color: inherit !important;
+    margin-bottom: 0.7em !important;
+}
+
+.driver-popover-footer {
+    display: flex !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+    margin-top: 1em !important;
+}
+
+.driver-popover-footer button,
+.driver-popover-footer .driver-popover-footer-button {
+    background: var(--primary-color, #1976d2) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 7px !important;
+    font-size: 1em !important;
+    font-family: inherit !important;
+    font-weight: 600 !important;
+    padding: 7px 18px !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background 0.18s !important;
+}
+html[data-theme="dark"] .driver-popover-footer button,
+html[data-theme="dark"] .driver-popover-footer .driver-popover-footer-button {
+    background: var(--primary-color, #2196f3) !important;
+    color: #fff !important;
+}
+
+.driver-popover-footer button:hover,
+.driver-popover-footer .driver-popover-footer-button:hover {
+    background: var(--secondary-color, #1256a0) !important;
 }
 
 /* Mobile responsiveness */
