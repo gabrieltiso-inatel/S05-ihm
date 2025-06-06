@@ -15,7 +15,7 @@ function renderPositions() {
                 </div>
                 <p class="position-description">${position.short_description}</p>
                 <div class="position-button-container">
-                    <button class="position-btn">View Position</button>
+                    <button class="position-btn">Visualizar</button>
                 </div>
             </div>
         `;

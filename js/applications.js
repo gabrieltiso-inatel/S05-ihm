@@ -22,7 +22,7 @@ function renderApplicationsList() {
                 <span class="application-date">${app.date}</span>
             </div>
             <div class="application-field">
-                <span class="application-label">Email:</span>
+                <span class="application-label">E-mail:</span>
                 <span class="application-email">${app.email}</span>
             </div>
             <div class="application-field">
@@ -30,7 +30,7 @@ function renderApplicationsList() {
                 <span>${app.fullname}</span>
             </div>
             <div class="application-field">
-                <span class="application-label">Resume:</span>
+                <span class="application-label">Currículo:</span>
                 <span>${resume ? resume.name : ''}</span>
             </div>
         `;
@@ -44,7 +44,7 @@ function addDriverInteraction(hasPositions) {
         element: document.querySelector('.application-card'),
         popover: {
             title: 'Detalhes da Aplicação',
-            description: 'Veja os detalhes da sua aplicação: vaga, data, email, nome e currículo utilizado.',
+            description: 'Veja os detalhes da sua aplicação: vaga, data, e-mail, nome e currículo utilizado.',
             side: 'top',
             align: 'center'
         }

@@ -103,17 +103,17 @@ function addDriverInteraction() {
     const driver = window.driver.js.driver;
     const driverObj = driver({
         showProgress: true,
-        onPopoverRender: null, // Remove checkbox logic
+        onPopoverRender: null,
         steps: [
             {
                 popover: {
                     title: 'Bem-vindo!',
                     description: `
-                    Olá! Vamos começar um tour rápido pela aplicação. 
+                    Olá! Vamos começar um tour rápido pelo sistema. 
                         <ul style="padding-left: 18px; margin: 0;">
                             <li><b>Use as setas do teclado</b> para navegar.</li>
                             <li><b>Pressione ESC</b> para sair a qualquer momento.</li>
-                            <li>Para ver o tour novamente, <b>abra o menu</b> (<b>Ctrl + m</b>), ou acesse clicando no ícone do canto superior esquerdo, e clique no tutorial.</li>
+                            <li>Para ver o tour novamente, <b>abra o menu</b> (<b>Ctrl + m</b>), ou clique no ícone no canto superior esquerdo e depois em Tutorial.</li>
                             <li>Para ativar ou desativar o tutorial, use o botão <b>Ativar/Desativar tutorial</b> no final do menu.</li>
                             <li>Reativar o tutorial em outra página <b>leva você de volta aqui</b>.</li>
                         </ul>`,

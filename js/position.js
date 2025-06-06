@@ -15,14 +15,14 @@ function renderPositionDetails() {
                 ${position.image ? `<img src="${position.image}" alt="${position.company} logo" class="position-icon">` : ''}
                 <h2 class="arimo-bold">${position.title}</h2>
             </div>
-            <h4 class="arimo-normal">Company: ${position.company}</h4>
+            <h4 class="arimo-normal">Empresa: ${position.company}</h4>
             <p class="arimo-normal">${position.description}</p>
 
-            <button class="position-btn" id="back-btn" onclick="window.location.href='positions.html'">Back to positions</button>
-            <button class="position-btn" id="apply-btn" onclick="window.location.href='apply.html?positionId=${position.id}'">Apply</button>
+            <button class="position-btn" id="back-btn" onclick="window.location.href='positions.html'">Voltar</button>
+            <button class="position-btn" id="apply-btn" onclick="window.location.href='apply.html?positionId=${position.id}'">Aplicar para vaga</button>
         `;
     } else {
-        detailsDiv.innerHTML = '<div class="arimo-normal">Position not found.</div>';
+        detailsDiv.innerHTML = '<div class="arimo-normal">Vaga não encontrada</div>';
     }
 }
 

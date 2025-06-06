@@ -26,7 +26,7 @@ function renderResumesList() {
                     <span class="arimo-light">${resume.description}</span>
                 </div>
                 <div class="action-container">
-                    <button class="carousel-btn">
+                    <button class="carousel-btn" title="Remover currículo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
@@ -35,8 +35,7 @@ function renderResumesList() {
                             <path d="M4 6h16l-1.5-3h-13L4 6z"></path>
                         </svg>
                     </button>
-
-                    <a href="${resume.file}" download class="carousel-btn">
+                    <a href="${resume.file}" download class="carousel-btn" title="Baixar currículo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
@@ -46,12 +45,10 @@ function renderResumesList() {
                 </div>
             </div>
         `;
-
         const button = div.querySelector('.carousel-btn');
         button.addEventListener('click', () => {
             deleteResume(idx);
         });
-
         container.appendChild(div);
     });
 }

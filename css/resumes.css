@@ -206,6 +206,12 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    color: var(--text-color, #222);
+}
+
+html[data-theme="dark"] .upload-form {
+    background: #232837;
+    color: #f3f3f3;
 }
 
 .upload-form label {
@@ -214,6 +220,10 @@
     gap: 0.3em;
     font-size: 1rem;
     color: var(--text-color, #222);
+}
+
+html[data-theme="dark"] .upload-form label {
+    color: #e5e7eb;
 }
 
 .upload-actions {
@@ -232,9 +242,39 @@
     color: var(--text-color, #222);
 }
 
+html[data-theme="dark"] .upload-form input[type="text"], 
+html[data-theme="dark"] .upload-form input[type="file"] {
+    background: #232837;
+    color: #f3f3f3;
+    border-color: #333a4d;
+}
+
 .upload-form input[type="text"]:focus {
     border-color: var(--primary-color, #1976d2);
     outline: none;
+}
+
+/* Button colors for upload/cancel */
+.upload-actions .carousel-btn[type="submit"] {
+    background: var(--primary-color, #1976d2);
+    color: #fff;
+    border: none;
+}
+
+.upload-actions .carousel-btn[type="submit"]:hover,
+.upload-actions .carousel-btn[type="submit"]:focus {
+    background: var(--secondary-color, #1256a0);
+}
+
+.upload-actions .carousel-btn[type="button"] {
+    background: #e53935;
+    color: #fff;
+    border: none;
+}
+
+.upload-actions .carousel-btn[type="button"]:hover,
+.upload-actions .carousel-btn[type="button"]:focus {
+    background: #b71c1c;
 }
 
 @media (max-width: 900px) {

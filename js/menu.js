@@ -40,7 +40,7 @@ function renderMenu() {
             </div>
             <div class="menu-grid-btn arimo-bold" id="applicationsMenuItem">
                 <span class="material-symbols-outlined menu-icon">assignment</span>
-                Applications
+                Aplicações
             </div>
             <div class="menu-grid-btn arimo-bold" id="tutorialMenuItem">
                 <span class="material-symbols-outlined menu-icon">help</span>
